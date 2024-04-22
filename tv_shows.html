@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TV Shows</title>
+</head>
+<body>
+    <h1>TV Shows</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Release date</th>
+                <th>Id</th>
+                <th></th>>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tv_show in tv_shows %}
+            <tr>
+                <td>{{ tv_show[0] }}</td>
+                <td>{{ tv_show[1] }}</td>
+                <td>{{ tv_show[3] }}</td>
+                <td>{{ tv_show[4] }}</td>
+                <td>{{ tv_show[5] }}</td>
+                <td>{{ tv_show[6] }}</td>
+                <td>{{ tv_show[7] }}</td>
+                <td>{{ tv_show[8] }}</td>
+                <td>{{ tv_show[9] }}</td>
+                <td>{{ tv_show[10] }}</td>
+                <td>{{ tv_show[11] }}</td>
+                <td>{{ tv_show[12] }}</td>
+                <td>{{ tv_show[13] }}</td>
+                <td>{{ tv_show[14] }}</td>
+                <td>{{ tv_show[15] }}</td>
+                <td>{{ tv_show[16] }}</td>
+                <td>{{ tv_show[17] }}</td>
+                <td>{{ tv_show[18] }}</td>
+                <td>{{ tv_show[19] }}</td>
+                <td>{{ tv_show[20] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
