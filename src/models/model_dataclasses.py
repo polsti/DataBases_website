@@ -73,7 +73,7 @@ class TV_Show:
     id_TV_Show : int
     title: str
     description : str
-    release_date: int # date
+    release_date: str # date  # TODO
 
 # no changes here
     def get_columns(self) -> Tuple[str, ...]:
@@ -95,7 +95,7 @@ class Season:
     fk_TV_Showid_TV_Show : int # fk_TV_Showid_TV_Show
     title: str
     description: str
-    release_date: int # date
+    release_date: str # date  # TODO
 
 # no changes here
     def get_columns(self) -> Tuple[str, ...]:
@@ -139,8 +139,8 @@ class Language:
 # if something is null
 # if integer is nullable no change
 # if string  -  name: str | None # nullable
-    id: int
-    name: str
+    id_Language: int
+    language_name: str
 
 # no changes here
     def get_columns(self) -> Tuple[str, ...]:
