@@ -17,22 +17,17 @@ def countries():
     rows = countries.get_all()
     return render_template("countries.html", rows=rows)
 
-#creation of a new class Countries2
-@app.route("/test")
-def test():
-    test = Test()
-    rows = test.get_all()
-    return render_template("test.html", rows=rows)
+
 
 # TV Shows
 @app.route("/tv_shows")
 def tv_shows():
     tv_shows = TV_Shows()
     rows = tv_shows.get_all()
-    return render_template("tv_shows.html", rows=rows)
+    return render_template("tv_show.html", rows=rows)
 
 # Seasons
-@app.route("/season")
+@app.route("/seasons")
 def seasons():
     seasons = Seasons()
     rows = seasons.get_all()

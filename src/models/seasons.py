@@ -61,7 +61,16 @@ class Seasons:
         
         record_id = record.season_id
         values = record.get_data()[1:]
-        
+        query = """UPDATE countries SET \
+            name = ?,
+            capital = ?
+            region = ?
+            population = ?
+            area = ?
+            phone_code = ?
+            country_code = ?
+            currency = ?
+            WHERE country_id = ?"""
         self.execute_query(query, (values, record_id))
         
         return bool(self.cursor.rowcount)

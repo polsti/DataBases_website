@@ -54,7 +54,7 @@ class Countries:
         List[Tuple[Any, ...]]
             A list of rows in the table
         """
-
+# query = "SELECT * FROM countries"   SELECT FROM your database table
         query = "SELECT * FROM countries"
         return self.execute_query(query)
 
@@ -75,6 +75,7 @@ class Countries:
         query = "SELECT * FROM countries WHERE id = ?"
         return self.execute_query(query, (record_id,))
 
+# record - type of country
     def insert(self, record: Country) -> bool:
         """Create a new record in the table
 
