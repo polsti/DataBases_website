@@ -1,22 +1,14 @@
 from flask import Flask, render_template
-from models.countries import Countries
 from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
 from models.languages import Languages
 
 app = Flask(__name__)
-
+# Home page
 @app.route("/")
 def index():
     return render_template("index.html")
-
-@app.route("/countries")
-def countries():
-    countries = Countries()
-    rows = countries.get_all()
-    return render_template("countries.html", rows=rows)
-
 
 
 # TV Shows
