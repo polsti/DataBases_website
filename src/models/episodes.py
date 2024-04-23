@@ -5,7 +5,7 @@ from models.model_dataclasses import Episode
 
 class Episodes:
     def __init__(self):
-        self.db_path = "db/database.sqlite"
+        self.db_path = "db/tv.sqlite"
         self.connection: sqlite3.Connection
         self.cursor: sqlite3.Cursor
 

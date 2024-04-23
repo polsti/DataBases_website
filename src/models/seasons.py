@@ -5,7 +5,7 @@ from models.model_dataclasses import Season
 
 class Seasons:
     def __init__(self):
-        self.db_path = "db/database.sqlite"
+        self.db_path = "db/tv.sqlite"
         self.connection: sqlite3.Connection
         self.cursor: sqlite3.Cursor
 
@@ -67,8 +67,6 @@ class Seasons:
         return bool(self.cursor.rowcount)
 
     def remove(self, record_id: int) -> bool:
-        
-
         query = "DELETE FROM seasons WHERE season_id = ?"
         self.execute_query(query, (record_id,))
         return bool(self.cursor.rowcount)

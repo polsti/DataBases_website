@@ -5,7 +5,7 @@ from models.model_dataclasses import TV_Show
 # all to change here from : "SELECT * FROM countries"  => From tests
 class TV_Shows:
     def __init__(self):
-        self.db_path = "db/database.sqlite"
+        self.db_path = "db/tv.sqlite"
         self.connection: sqlite3.Connection
         self.cursor: sqlite3.Cursor
 
@@ -66,8 +66,6 @@ class TV_Shows:
         return bool(self.cursor.rowcount)
 
     def remove(self, record_id: int) -> bool:
-        
-
         query = "DELETE FROM countries WHERE country_id = ?"
         self.execute_query(query, (record_id,))
         return bool(self.cursor.rowcount)
