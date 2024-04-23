@@ -2,7 +2,7 @@ from typing import Any, Tuple, List
 import sqlite3
 from models.model_dataclasses import TV_Show
 
-# all to change here from : "SELECT * FROM countries"  => From tests
+
 class TV_Shows:
     def __init__(self):
         self.db_path = "db/tv.sqlite"
