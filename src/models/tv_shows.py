@@ -82,3 +82,14 @@ class TV_Shows:
     '''def search(self, query):
         return results'''
     # database search logic
+
+    # inserting tv shows
+    def insert(self, title, description, release_date, id_tv_show):
+
+        # validate input
+        query = "INSERT INTO tv_shows VALUES (?,?)"
+
+        self.cursor.execute(query, (title, description, release_date, id_tv_show))
+        self.connection.commit()
+        # return inserted show id
+        return self.cursor.lastrowid
