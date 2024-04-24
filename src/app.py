@@ -3,6 +3,8 @@ from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
 from models.languages import Languages
+from flask import redirect
+from datetime import date
 
 app = Flask(__name__)
 # Home page
@@ -17,6 +19,29 @@ def tv_shows():
     tv_shows = TV_Shows()
     rows = tv_shows.get_all()
     return render_template("tv_show.html", rows=rows)
+
+# adding a page for adding tv shows
+@app.route('/tv_shows/add')
+def add_tv_show():
+   return render_template('add_tv_show.html')
+# inserting data
+@app.route('/tv_shows/insert', methods=['POST'])
+
+@app.route('/tv_shows/insert', methods=['POST']) 
+
+def insert_tv_show():
+
+  title = request.form['title']
+  description = request.form['description']
+  release_date = request.form['Release date']
+  id_TV_Show = request.form['ID']
+
+  tv_shows = TV_Shows()
+
+  tv_shows = tv_shows.insert(title, description, release_date, id_TV_Show)
+
+  return redirect('/tv_shows')
+
 
 # Seasons
 @app.route("/seasons")
