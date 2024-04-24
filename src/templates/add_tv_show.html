@@ -1,7 +1,35 @@
-<form method="POST" action="/tv_shows/insert">
+{% extends "base.html" %}
+
+<style>
+
+.form {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+}
+
+</style>
+
+{% block content %}
+
+  <form class="form" method="POST" action="/tv_shows/insert">
+
     <input name="title">
+    
     <input name="description">
-    <input name="release_date">
-    <input name="id_tv_show">
+    <input name="release date">
+    <input name="id">
+
     <button type="submit">Submit</button>
+
   </form>
+
+{% endblock %}
