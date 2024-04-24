@@ -42,6 +42,15 @@ def insert_tv_show():
 
   return redirect('/tv_shows')
 
+# for passing messages
+@app.route('/')
+def index():
+
+  messages = "Test message"
+
+  return render_template('index.html', 
+                        messages=messages)
+
 
 # Seasons
 @app.route("/seasons")
