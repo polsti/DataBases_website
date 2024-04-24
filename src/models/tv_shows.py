@@ -78,3 +78,7 @@ class TV_Shows:
         query = "DELETE FROM countries WHERE country_id = ?"
         self.execute_query(query, (record_id,))
         return bool(self.cursor.rowcount)
+    
+    '''def search(self, query):
+        return results'''
+    # database search logic

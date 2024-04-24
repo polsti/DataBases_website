@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
@@ -23,6 +23,8 @@ def tv_shows():
 def seasons():
     seasons = Seasons()
     rows = seasons.get_all()
+    # adding code here for tv show reference
+    
     return render_template("seasons.html", rows=rows)
 
 # Episodes
