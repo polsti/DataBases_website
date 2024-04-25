@@ -44,5 +44,16 @@ def languages():
     rows = languages.get_all()
     return render_template("languages.html", rows=rows)
 
+@app.route("/Episodes/insert")
+def insert_episode_form():
+    all_tv_shows = TV_Shows().get_all()
+    all_languages = Languages().get_all()
+    return render_template("insertion.html", episode=None, season=None, languages=all_languages, tv_shows=all_tv_shows)
+
+  # A = Countries
+  # B = Performers
+  # C = Songs 
+  # D = Events
+  
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
