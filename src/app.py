@@ -20,36 +20,6 @@ def tv_shows():
     rows = tv_shows.get_all()
     return render_template("tv_show.html", rows=rows)
 
-# adding a page for adding tv shows
-@app.route('/tv_shows/add')
-def add_tv_show():
-   return render_template('add_tv_show.html')
-# inserting data
-@app.route('/tv_shows/insert', methods=['POST'])
-
-@app.route('/tv_shows/insert', methods=['POST']) 
-
-def insert_tv_show():
-
-  title = request.form['title']
-  description = request.form['description']
-  release_date = request.form['Release date']
-  id_TV_Show = request.form['ID']
-
-  tv_shows = TV_Shows()
-
-  tv_shows = tv_shows.insert(title, description, release_date, id_TV_Show)
-
-  return redirect('/tv_shows')
-
-# for passing messages
-@app.route('/')
-def index():
-
-  messages = "Test message"
-
-  return render_template('index.html', 
-                        messages=messages)
 
 
 # Seasons

@@ -9,11 +9,6 @@ from typing import Tuple, Any
 class TV_Show:
     """Represents a tv show."""
 
-# here should be properties for a specific table 
-# for TV Shows - some id, name, descriptio and bla bla bla
-# if something is null
-# if integer is nullable no change
-# if string  -  name: str | None # nullable
     id_TV_Show : int
     title: str
     description : str
@@ -40,11 +35,7 @@ class Season:
     title: str
     description: str
     release_date: date 
-    # added this part
-    @property
-    def tv_show(self):
-        return TV_Show.get_by_id(self.tv_show_id)
-
+    
 # no changes here
     def get_columns(self) -> Tuple[str, ...]:
         
@@ -99,6 +90,3 @@ class Episode:
     def get_data(self) -> Tuple[Any, ...]:
         
         return tuple(getattr(self, column.name) for column in fields(self))
-
-                
-
