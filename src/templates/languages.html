@@ -16,11 +16,10 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in rows %}
+        {% for language in rows %}
         <tr>
-            {% for element in row %}
-                <td>{{ element }}</td>
-            {% endfor %}
+            <td>{{ language.language_name }}</td>
+            <td>{{ language.id_Language }}</td>
         </tr>
         {% endfor %}
     </tbody>

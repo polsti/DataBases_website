@@ -18,11 +18,12 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in rows %}
+        {% for tv_show in rows %}
         <tr>
-            {% for element in row %}
-                <td>{{ element }}</td>
-            {% endfor %}
+            <td>{{ tv_show.title }}</td>
+            <td>{{ tv_show.description }}</td>
+            <td>{{ tv_show.release_date }}</td>
+            <td>{{ tv_show.id_TV_Show }}</td>
         </tr>
         {% endfor %}
     </tbody>
