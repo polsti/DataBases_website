@@ -40,44 +40,4 @@ class Languages:
         rows = self.execute_query(query, (record_id,))
         row = rows[0]
         return Language(**row)
-        
-
-# record - type of country
-    def insert(self, record: Language) -> bool:
-        
-        values = record.get_data()[1:]  # index 0 is ID
-        columns = record.get_columns()[1:]
-        readable_columns = ", ".join(columns)
-        query = f"INSERT INTO languages ({readable_columns}) VALUES ?"
-
-        try:
-            self.execute_query(query, (values,))
-        except sqlite3.Error:
-            return False
-
-        self.connection.commit()
-        return True
-
-    def update(self, record: Language) -> bool:
-        
-        record_id = record.language_id
-        values = record.get_data()[1:]
-        query = """UPDATE countries SET \
-            name = ?,
-            capital = ?
-            region = ?
-            population = ?
-            area = ?
-            phone_code = ?
-            country_code = ?
-            currency = ?
-            WHERE country_id = ?"""
-        self.execute_query(query, (values, record_id))
-        
-        return bool(self.cursor.rowcount)
-
-    def remove(self, record_id: int) -> bool:
-        
-        query = "DELETE FROM languages WHERE language_id = ?"
-        self.execute_query(query, (record_id,))
-        return bool(self.cursor.rowcount)
+ 
