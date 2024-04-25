@@ -30,15 +30,13 @@ class Languages:
 
         return result
 
-    def get_all(self) -> List[Tuple[Any, ...]]:
+    def get_all(self) -> List[Language]:
         
 # query = "SELECT * FROM countries"   SELECT FROM your database table
         query = "SELECT * FROM languages"
         return self.execute_query(query)
 
-    def get_by_id(self, record_id: int) -> List[Tuple[Any, ...]]:
-        
-
+    def get_by_id(self, record_id: int) -> Language:
         query = "SELECT * FROM languages WHERE id = ?"
         return self.execute_query(query, (record_id,))
 

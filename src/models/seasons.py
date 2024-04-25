@@ -30,13 +30,12 @@ class Seasons:
 
         return result
 
-    def get_all(self) -> List[Tuple[Any, ...]]:
+    def get_all(self) -> List[Season]:
         
-# query = "SELECT * FROM countries"   SELECT FROM your database table
         query = "SELECT * FROM seasons"
         return self.execute_query(query)
 
-    def get_by_id(self, record_id: int) -> List[Tuple[Any, ...]]:
+    def get_by_id(self, record_id: int) -> Season:
         
         query = "SELECT * FROM seasons WHERE id = ?"
         return self.execute_query(query, (record_id,))

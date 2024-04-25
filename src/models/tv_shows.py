@@ -30,13 +30,11 @@ class TV_Shows:
 
         return result
 
-    def get_all(self) -> List[Tuple[Any, ...]]:
-        
-
+    def get_all(self) -> List[TV_Show]:
         query = "SELECT * FROM tv_shows"
         return self.execute_query(query)
 
-    def get_by_id(self, record_id: int) -> List[Tuple[Any, ...]]:
+    def get_by_id(self, record_id: int) -> TV_Show:
         
         query = "SELECT * FROM tv_shows WHERE id = ?"
         return self.execute_query(query, (record_id,))
