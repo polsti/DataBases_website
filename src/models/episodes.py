@@ -42,20 +42,27 @@ class Episodes:
         row = rows[0]
         return Episode(**row)
 
-# record - type of country
+
     def insert(self, record: Episode) -> bool:
         
-        values = record.get_data()[1:]  # index 0 is ID
-        columns = record.get_columns()[1:]
-        readable_columns = ", ".join(columns)
-        query = f"INSERT INTO episodes ({readable_columns}) VALUES ?"
+        query = """
+          INSERT INTO episodes (
+              title,
+              description,
+              episode_number,
+              duration,
+              id_Episode,
+              fk_Languageid_Language,
+              fk_Seasonid_Season
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?)
+          """
+        values = tuple(record.model_dump().values())[1:]  # forget about ID
 
         try:
-            self.execute_query(query, (values,))
-        except sqlite3.Error:
+            self.execute_query(query, values)
+        except sqlite3.DatabaseError:
             return False
-
-        self.connection.commit()
         return True
 
     def update(self, record: Episode) -> bool:

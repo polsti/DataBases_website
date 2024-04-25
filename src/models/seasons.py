@@ -44,17 +44,22 @@ class Seasons:
 # record - type of country
     def insert(self, record: Season) -> bool:
        
-        values = record.get_data()[1:]  # index 0 is ID
-        columns = record.get_columns()[1:]
-        readable_columns = ", ".join(columns)
-        query = f"INSERT INTO seasons ({readable_columns}) VALUES ?"
+        query = """
+          INSERT INTO seasons (
+              title,
+              description,
+              release_date,
+              id_Season,
+              fk_TV_Showid_TV_Show
+          )
+          VALUES (?, ?, ?, ?, ?)
+          """
+        values = tuple(record.model_dump().values())[1:]  # forget about ID
 
         try:
-            self.execute_query(query, (values,))
-        except sqlite3.Error:
+            self.execute_query(query, values)
+        except sqlite3.DatabaseError:
             return False
-
-        self.connection.commit()
         return True
 
     def update(self, record: Season) -> bool:
@@ -75,7 +80,3 @@ class Seasons:
         
         return bool(self.cursor.rowcount)
 
-    def remove(self, record_id: int) -> bool:
-        query = "DELETE FROM seasons WHERE season_id = ?"
-        self.execute_query(query, (record_id,))
-        return bool(self.cursor.rowcount)
