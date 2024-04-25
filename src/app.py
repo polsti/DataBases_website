@@ -3,7 +3,6 @@ from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
 from models.languages import Languages
-from flask import redirect
 from datetime import date
 
 app = Flask(__name__)

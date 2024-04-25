@@ -36,8 +36,10 @@ class Seasons:
         return [Season(**row) for row in rows]
 
     def get_by_id(self, record_id: int) -> Season:
-        query = "SELECT * FROM seasons WHERE id = ?"
-        return self.execute_query(query, (record_id,))
+        query = "SELECT * FROM seasons WHERE id_season = ?"
+        rows = self.execute_query(query, (record_id,))
+        row = rows[0]
+        return Season(**row)
 
 # record - type of country
     def insert(self, record: Season) -> bool:

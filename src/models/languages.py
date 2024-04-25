@@ -36,8 +36,11 @@ class Languages:
         return [Language(**row) for row in rows]
 
     def get_by_id(self, record_id: int) -> Language:
-        query = "SELECT * FROM languages WHERE id = ?"
-        return self.execute_query(query, (record_id,))
+        query = "SELECT * FROM languages WHERE id_Language = ?"
+        rows = self.execute_query(query, (record_id,))
+        row = rows[0]
+        return Language(**row)
+        
 
 # record - type of country
     def insert(self, record: Language) -> bool:
