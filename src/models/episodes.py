@@ -66,21 +66,23 @@ class Episodes:
         return True
 
     def update(self, record: Episode) -> bool:
-       
-        record_id = record.episode_id
-        values = record.get_data()[1:]
-        query = """UPDATE countries SET \
-            name = ?,
-            capital = ?
-            region = ?
-            population = ?
-            area = ?
-            phone_code = ?
-            country_code = ?
-            currency = ?
-            WHERE country_id = ?"""
-        self.execute_query(query, (values, record_id))
         
+        query = """
+          UPDATE songs SET
+              title = ?,
+              description = ?,
+              episode_number = ?,
+              duration = ?,
+              id_Episode = ?,
+              fk_Languageid_Language = ?
+              fk_Seasonid_Season = ?
+          WHERE id_Season = ?
+          """
+
+        record_id = record.id_Episode
+        values = tuple(record.model_dump().values())[1:]
+        self.execute_query(query, (*values, record_id))
+
         return bool(self.cursor.rowcount)
 
     def remove(self, record_id: int) -> bool:

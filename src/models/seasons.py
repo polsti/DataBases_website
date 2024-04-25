@@ -64,19 +64,19 @@ class Seasons:
 
     def update(self, record: Season) -> bool:
         
-        record_id = record.season_id
-        values = record.get_data()[1:]
-        query = """UPDATE countries SET \
-            name = ?,
-            capital = ?
-            region = ?
-            population = ?
-            area = ?
-            phone_code = ?
-            country_code = ?
-            currency = ?
-            WHERE country_id = ?"""
-        self.execute_query(query, (values, record_id))
-        
+        query = """
+          UPDATE songs SET
+              title = ?,
+              description = ?,
+              release_date = ?,
+              id_Season = ?,
+              fk_TV_Showid_TV_Show = ?
+          WHERE id_Season = ?
+          """
+
+        record_id = record.id_Season
+        values = tuple(record.model_dump().values())[1:]
+        self.execute_query(query, (*values, record_id))
+
         return bool(self.cursor.rowcount)
 
