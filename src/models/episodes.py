@@ -37,7 +37,7 @@ class Episodes:
 
 
     def get_by_id(self, record_id: int) -> Episode:
-        query = "SELECT * FROM episodes WHERE id_Season = ?"
+        query = "SELECT * FROM episodes WHERE id_Episode = ?"
         rows = self.execute_query(query, (record_id,))
         row = rows[0]
         return Episode(**row)
@@ -68,14 +68,13 @@ class Episodes:
         
         query = """
           UPDATE episodes SET
-              id_Episode = ?,
               title = ?,
               description = ?,
               episode_number = ?,
               duration = ?,
-              fk_Languageid_Language = ?
+              fk_Languageid_Language = ?,
               fk_Seasonid_Season = ?
-          WHERE id_Season = ?
+          WHERE id_Episode = ?
           """
 
         record_id = record.id_Episode

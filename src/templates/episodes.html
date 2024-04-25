@@ -22,6 +22,8 @@
             <th>ID</th>
             <th>Language ID</th>
             <th>Season ID</th>
+            <th>Edit Episode</th>
+            <th>Remove Episode</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +36,20 @@
             <td>{{ episode.id_Episode }}</td>
             <td>{{ episode.fk_Languageid_Language }}</td>
             <td>{{ episode.fk_Seasonid_Season }}</td>
+            <td>
+                <form action="{{ url_for('edit_episode_form') }}" method="post">
+                    <input type="hidden" name="id_Episode" value="{{ episode.id_Episode }}">
+                    <input type="hidden" name="fk_Seasonid_Season" value="{{ episode.fk_Seasonid_Season }}">
+                    <input type="submit" class="btn btn-outline-primary" name="button" value="Edit">
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for('insanity') }}" method="post"
+                    onsubmit="return confirm('Are you sure you want to delete this row?')">
+                    <input type="hidden" name="id_Episode" value="{{ episode.id_Episode }}">
+                    <input type="submit" class="btn btn-outline-danger" value="Remove">
+                </form>
+              </td>
         </tr>
         {% endfor %}
     </tbody>

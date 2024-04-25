@@ -65,7 +65,6 @@ class Seasons:
         
         query = """
           UPDATE seasons SET
-              id_Season = ?,
               title = ?,
               description = ?,
               release_date = ?,
