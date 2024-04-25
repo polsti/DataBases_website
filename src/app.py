@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+from pydantic import ValidationError
 from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
@@ -54,6 +55,28 @@ def insert_episode_form():
   # B = Performers
   # C = Songs 
   # D = Events
+  
+@app.route("/Episodes/insert", methods=["GET", "POST"])
+def insert_episode_action():
+    inputs = request.form.to_dict()
+    
+    seasons = Seasons()
+    episodes = Episodes()
+    
+    try:
+        id_season = seasons.get_all()[-1].id_season + 1  # get last performer's ID
+        episode = Episodes(id_season = id_season, **inputs)
+        season = Seasons(**inputs)
+
+    except ValidationError:
+        all_tv_shows = TV_Shows().get_all()
+        all_languages = Languages().get_all()
+        return render_template("insertion.html", episode=None, season=None, languages=all_languages, tv_shows=all_tv_shows, validation_error=True)
+
+    seasons.insert(season)
+    episodes.insert(episode)
+
+    return redirect("\Episodes")
   
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
