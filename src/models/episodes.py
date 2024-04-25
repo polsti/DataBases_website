@@ -6,17 +6,17 @@ from models.model_dataclasses import Episode
 class Episodes:
     def __init__(self):
         self.db_path = "db/tv.sqlite"
-        self.connection: sqlite3.Connection
-        self.cursor: sqlite3.Cursor
+        self.connection = sqlite3.connect(self.db_path)
+        self.connection.row_factory = sqlite3.Row
+        self.cursor: sqlite3.Cursor   
 
     def __enter__(self):
-        self.connection = sqlite3.connect(self.db_path)
+        
         self.cursor = self.connection.cursor()
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self.cursor.close()
-        self.connection.close()
+        self.connection.commit()
 
     def execute_query(self, query: str, parameters: Tuple[Any, ...] = ()) -> List[Tuple[Any, ...]]:
         
@@ -28,7 +28,7 @@ class Episodes:
             print(f"Some error during query execution occurred: {e}")
             raise e
 
-        return result
+        return [dict(row) for row in result]
 
     def get_all(self) -> List[Episode]:
         query = "SELECT * FROM episodes"
@@ -87,6 +87,6 @@ class Episodes:
 
     def remove(self, record_id: int) -> bool:
       
-        query = "DELETE FROM episodes WHERE episode_id = ?"
+        query = "DELETE FROM episodes WHERE id_Episode = ?"
         self.execute_query(query, (record_id,))
         return bool(self.cursor.rowcount)
