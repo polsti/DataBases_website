@@ -27,16 +27,11 @@ class Season(BaseModel):
     description: str
     release_date: date 
     
-    @field_validator("release_date")
-    @classmethod
-    def check_date(value: date) -> date:
-      if value < 0:
-          raise ValueError("Date can't be negative")
-      return value
+    
     
     @field_validator("title", "description")
     @classmethod
-    def validate_non_empty_string(cls, value):
+    def validate_non_empty_string_seasons(cls, value):
         if not value or not value.strip():
           raise ValueError("This field cannot be empty or contain only whitespace.")
         return value
@@ -65,18 +60,19 @@ class Episode(BaseModel):
     fk_Languageid_Language : Language #int # fk_Languageid_Language
     fk_Seasonid_Season : Season #int
 
-    @field_validator("id_Episode")
+    
+    @field_validator("episode_number")
     @classmethod
-    def check_non_negative_int(value):
+    def check_non_negative_int_num(cls, value):
       if value < 0:
           raise ValueError("This field must be a non-negative integer.")
       return value
     
-    @field_validator("episode_number")
+    @field_validator("title", "description")
     @classmethod
-    def check_non_negative_int(value):
-      if value < 0:
-          raise ValueError("This field must be a non-negative integer.")
-      return value
+    def validate_non_empty_string_episode(cls, value):
+        if not value or not value.strip():
+          raise ValueError("This field cannot be empty or contain only whitespace.")
+        return value
 
 
