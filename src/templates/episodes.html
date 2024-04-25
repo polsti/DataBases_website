@@ -22,11 +22,15 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in rows %}
+        {% for episode in rows %}
         <tr>
-            {% for element in row %}
-                <td>{{ element }}</td>
-            {% endfor %}
+            <td>{{ episode.title }}</td>
+            <td>{{ episode.description }}</td>
+            <td>{{ episode.episode_number }}</td>
+            <td>{{ episode.duration }}</td>
+            <td>{{ episode.id_Episode }}</td>
+            <td>{{ episode.fk_Languageid_Language }}</td>
+            <td>{{ episode.fk_Seasonid_Season }}</td>
         </tr>
         {% endfor %}
     </tbody>

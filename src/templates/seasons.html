@@ -19,11 +19,13 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in rows %}
+        {% for season in rows %}
         <tr>
-            {% for element in row %}
-                <td>{{ element }}</td>
-            {% endfor %}
+            <td>{{ season.title }}</td>
+            <td>{{ season.description }}</td>
+            <td>{{ season.release_date }}</td>
+            <td>{{ season.id_Season }}</td>
+            <td>{{ season.fk_TV_Showid_TV_Show }}</td>
         </tr>
         {% endfor %}
     </tbody>
