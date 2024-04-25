@@ -31,14 +31,12 @@ class Episodes:
         return result
 
     def get_all(self) -> List[Episode]:
-     
         query = "SELECT * FROM episodes"
-        return self.execute_query(query)
+        rows = self.execute_query(query)
+        return [Episode(**row) for row in rows]
 
 
     def get_by_id(self, record_id: int) -> Episode:
-       
-
         query = "SELECT * FROM episodes WHERE id = ?"
         return self.execute_query(query, (record_id,))
 

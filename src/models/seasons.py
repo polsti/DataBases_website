@@ -31,12 +31,11 @@ class Seasons:
         return result
 
     def get_all(self) -> List[Season]:
-        
         query = "SELECT * FROM seasons"
-        return self.execute_query(query)
+        rows = self.execute_query(query)
+        return [Season(**row) for row in rows]
 
     def get_by_id(self, record_id: int) -> Season:
-        
         query = "SELECT * FROM seasons WHERE id = ?"
         return self.execute_query(query, (record_id,))
 

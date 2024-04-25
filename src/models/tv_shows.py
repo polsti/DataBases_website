@@ -35,9 +35,9 @@ class TV_Shows:
         return self.execute_query(query)
 
     def get_by_id(self, record_id: int) -> TV_Show:
-        
         query = "SELECT * FROM tv_shows WHERE id = ?"
-        return self.execute_query(query, (record_id,))
+        rows = self.execute_query(query, (record_id,))
+        return [TV_Show(**row) for row in rows]
 
     def insert(self, record: TV_Show) -> bool:
         
