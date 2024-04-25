@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/Episodes">Episodes</a></li>
+    <li class="breadcrumb-item" aria-current="page">New Episode</li>
+</ol>
+
+{% if validation_error %}
+<div class="alert alert-danger" role="alert">
+    Empty or invalid fields. Try again.
+</div>
+{% endif %}
+
+
+<form method="post" class="d-grid gap-3">
+    <p class="required-note"><span class="text-danger">*</span> marked fields are required</p>
+
+    <h4 class="mt-3">Episode Information</h4>
+
+    <div class="form-group">
+        <label for="title">Title</label><span class="text-danger">*</span></label>
+        <input type="text" name="title" class="form-control" value="{{ episode.title }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Description<span class="text-danger">*</span></label>
+        <input type="text" name="description" class="form-control" value="{{ episode.description }}">
+    </div>
+    <div class="form-group">
+        <label for="episode_number">Episode Number<span class="text-danger">*</span></label>
+        <input type="number" name="episode_number" class="form-control" value="{{ episode.episode_number }}">
+    </div>
+    <div class="form-group">
+        <label for="duration">Duration<span class="text-danger">*</span></label>
+        <input type="number" name="duration" class="form-control" value="{{ episode.duration }}">
+    </div>
+    {% if action == "edit" %}
+    <div class="form-group">
+        <label for="id_Episode">Episode ID</label>
+        <input type="number" name="id_Episode" class="form-control" value="{{ episode.id_Episode }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="fk_Languageid_Language">Language ID</label>
+        <input type="number" name="fk_Languageid_Language" class="form-control" value="{{ episode.fk_Languageid_Language }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="fk_Seasonid_Season">Season ID</label>
+        <input type="number" name="fk_Seasonid_Season" class="form-control" value="{{ episode.fk_Seasonid_Season }}" readonly>
+    </div>
+    {% endif %}
+    <!--     <div class="form-group">
+        <label for="event_id">Event<span class="text-danger">*</span></label>
+        <select name="event_id" class="form-select form-control">
+            {% for event in events %}
+            <option value="{{ event.event_id }}" {% if song.event_id==event.event_id %} selected {% endif %}>{{
+                event.event_name }}</option>
+            {% endfor %}
+        </select>
+    </div> -->
+
+
+    <h4 class="mt-3">Season Information</h4>
+
+    <div class="form-group">
+        <label for="title">Season Title<span class="text-danger">*</span></label>
+        <input type="text" name="title" class="form-control" value="{{ season.title }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Season Description<span class="text-danger">*</span></label>
+        <input type="text" name="description" class="form-control" value="{{ season.description }}">
+    </div>
+    <div class="form-group">
+        <label for="release_date">Release Date<span class="text-danger">*</span></label>
+        <input type="date" name="release_date" class="form-control" value="{{ season.release_date }}">
+    </div>
+
+
+    {% if action == "edit" %}
+    <div class="form-group">
+        <label for="id_Season">Season ID</label>
+        <input type="number" name="id_Season" class="form-control" value="{{ season.id_Season }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="fk_TV_Showid_TV_Show">TV Show ID</label>
+        <input type="number" name="fk_TV_Showid_TV_Show" class="form-control" value="{{ season.fk_TV_Showid_TV_Show }}" readonly>
+    </div>
+    {% endif %}
+    
+    
+
+    <!--     <div class="form-group">
+        <label for="country_id">Country<span class="text-danger">*</span></label>
+        <select name="country_id" class="form-select form-control">
+            {% for country in countries %}
+            <option value="{{ country.country_id }}" {% if performer.country_id==country.country_id %} selected {% endif
+                %}>{{ country.name }}</option>
+            {% endfor %}
+        </select>
+    </div> -->
+
+
+    <input type="submit" class="btn btn-primary w-25" name="button" value="Submit">
+</form>
+
+{% endblock %}
