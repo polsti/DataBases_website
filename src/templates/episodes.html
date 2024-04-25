@@ -21,7 +21,9 @@
             <th>Duration</th>
             <th>ID</th>
             <th>Language ID</th>
+            <th>Language</th>
             <th>Season ID</th>
+            <th>Season</th>
             <th>Edit Episode</th>
             <th>Remove Episode</th>
         </tr>
@@ -35,7 +37,9 @@
             <td>{{ episode.duration }}</td>
             <td>{{ episode.id_Episode }}</td>
             <td>{{ episode.fk_Languageid_Language }}</td>
+            <td>{{ episode.language_nm }}</td>
             <td>{{ episode.fk_Seasonid_Season }}</td>
+            <td>{{ episode.season_name }}</td>
             <td>
                 <form action="{{ url_for('edit_episode_form') }}" method="post">
                     <input type="hidden" name="id_Episode" value="{{ episode.id_Episode }}">

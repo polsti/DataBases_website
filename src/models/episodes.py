@@ -31,7 +31,19 @@ class Episodes:
         return [dict(row) for row in result]
 
     def get_all(self) -> List[Episode]:
-        query = "SELECT * FROM episodes"
+        query = """SELECT 
+        episodes.title, 
+        episodes.description, 
+        episodes.episode_number, 
+        episodes.duration, 
+        episodes.id_Episode,
+        episodes.fk_Languageid_Language,
+        languages.language_name AS language_nm,
+        episodes.fk_Seasonid_Season,
+        seasons.title AS season_name
+        FROM episodes
+        LEFT JOIN languages ON episodes.fk_Languageid_Language = id_Language
+        LEFT JOIN seasons ON episodes.fk_Seasonid_Season = seasons.id_Season"""
         rows = self.execute_query(query)
         return [Episode(**row) for row in rows]
 
@@ -56,7 +68,7 @@ class Episodes:
           )
           VALUES (?, ?, ?, ?, ?, ?)
           """
-        values = tuple(record.model_dump().values())[1:]  # forget about ID
+        values = tuple(record.model_dump().values())[1:-2]  # forget about ID
 
         try:
             self.execute_query(query, values)
@@ -78,7 +90,7 @@ class Episodes:
           """
 
         record_id = record.id_Episode
-        values = tuple(record.model_dump().values())[1:]
+        values = tuple(record.model_dump().values())[1:-2]
         self.execute_query(query, (*values, record_id))
 
         return bool(self.cursor.rowcount)

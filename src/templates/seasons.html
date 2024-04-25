@@ -16,6 +16,7 @@
             <th>Release date</th>
             <th>ID</th>
             <th>TV Show ID</th>
+            <th>TV Show</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
             <td>{{ season.release_date }}</td>
             <td>{{ season.id_Season }}</td>
             <td>{{ season.fk_TV_Showid_TV_Show }}</td>
+            <td>{{ season.tv_show_name }}</td>
         </tr>
         {% endfor %}
     </tbody>

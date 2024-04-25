@@ -26,6 +26,7 @@ class Season(BaseModel):
     description: str
     release_date: date 
     fk_TV_Showid_TV_Show : int    # fk_TV_Showid_TV_Show # int
+    tv_show_name: str | None = None
     
     
     
@@ -60,6 +61,8 @@ class Episode(BaseModel):
     duration : float
     fk_Languageid_Language : int   #int # fk_Languageid_Language
     fk_Seasonid_Season : int    #int
+    language_nm : str | None = None
+    season_name: str | None = None
 
 
     @field_validator("title", "description")
