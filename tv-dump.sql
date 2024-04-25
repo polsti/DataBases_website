@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS "episodes" (
   "description" varchar(255) NOT NULL,
   "episode_number" int(11) NOT NULL,
   "duration" double NOT NULL,
-  "id_Episode" int(11) PRIMARY KEY,
+  "id_Episode" INTEGER PRIMARY KEY,
   "fk_Languageid_Language" int(11) NOT NULL,
   "fk_Seasonid_Season" int(11) NOT NULL,
   CONSTRAINT "goes" FOREIGN KEY ("fk_Languageid_Language") REFERENCES "languages" ("id_Language"),
@@ -33,7 +33,7 @@ INSERT INTO episodes VALUES('"Sugarwood"','Financial planner Marty Byrde (played
 INSERT INTO episodes VALUES('"Offred"','Based on Margaret Atwoods dystopian novel, the series is set in a totalitarian society where fertile women are forced into sexual servitude for the ruling class. In the first episode, Offred (played by Elisabeth Moss) narrates her life as a Handmaid, high',20,47.0,20,20,20);
 CREATE TABLE IF NOT EXISTS "languages" (
   "language_name" varchar(255) NOT NULL,
-  "id_Language" int(11) PRIMARY KEY
+  "id_Language" INTEGER PRIMARY KEY
 );
 INSERT INTO languages VALUES('Spanish',1);
 INSERT INTO languages VALUES('Hebrew',2);
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS "seasons" (
   "title" varchar(255) NOT NULL,
   "description" varchar(255) NOT NULL,
   "release_date" date NOT NULL,
-  "id_Season" int(11) PRIMARY KEY,
+  "id_Season" INTEGER PRIMARY KEY,
   "fk_TV_Showid_TV_Show" int(11) NOT NULL,
   CONSTRAINT "seasons_ibfk_1" FOREIGN KEY ("fk_TV_Showid_TV_Show") REFERENCES "tv_shows" ("id_TV_Show")
 );
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS "tv_shows" (
   "title" varchar(255) NOT NULL,
   "description" varchar(255) NOT NULL,
   "release_date" date NOT NULL,
-  "id_TV_Show" int(11) PRIMARY KEY
+  "id_TV_Show" INTEGER PRIMARY KEY
 );
 INSERT INTO tv_shows VALUES('"Breaking Bad"','A high school chemistry teacher turned methamphetamine manufacturer partners with a former student to create and sell a high-quality blue meth while navigating the dangerous criminal underworld.','2008-01-20',1);
 INSERT INTO tv_shows VALUES('"Game of Thrones"','Set in the fictional continents of Westeros and Essos, the show follows the power struggles among noble families as they vie for control of the Iron Throne, while an ancient evil threatens the entire world.','2011-04-17',2);
