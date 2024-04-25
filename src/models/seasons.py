@@ -49,10 +49,9 @@ class Seasons:
               title,
               description,
               release_date,
-              id_Season,
               fk_TV_Showid_TV_Show
           )
-          VALUES (?, ?, ?, ?, ?)
+          VALUES (?, ?, ?, ?)
           """
         values = tuple(record.model_dump().values())[1:]  # forget about ID
 
@@ -65,11 +64,11 @@ class Seasons:
     def update(self, record: Season) -> bool:
         
         query = """
-          UPDATE songs SET
+          UPDATE seasons SET
+              id_Season = ?,
               title = ?,
               description = ?,
               release_date = ?,
-              id_Season = ?,
               fk_TV_Showid_TV_Show = ?
           WHERE id_Season = ?
           """

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from pydantic import ValidationError
+from models.model_dataclasses import Episode, Season
 from models.tv_shows import TV_Shows
 from models.seasons import Seasons
 from models.episodes import Episodes
@@ -64,9 +65,9 @@ def insert_episode_action():
     episodes = Episodes()
     
     try:
-        id_season = seasons.get_all()[-1].id_season + 1  # get last performer's ID
-        episode = Episodes(id_season = id_season, **inputs)
-        season = Seasons(**inputs)
+        fk_Seasonid_Season = seasons.get_all()[-1].id_Season + 1  # get last performer's ID
+        episode = Episode(fk_Seasonid_Season = fk_Seasonid_Season, **inputs)
+        season = Season(**inputs)
 
     except ValidationError:
         all_tv_shows = TV_Shows().get_all()
@@ -76,7 +77,7 @@ def insert_episode_action():
     seasons.insert(season)
     episodes.insert(episode)
 
-    return redirect("\Episodes")
+    return redirect("\episodes")
   
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)

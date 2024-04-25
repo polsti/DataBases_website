@@ -21,21 +21,20 @@ class TV_Show(BaseModel):
 class Season(BaseModel):
     """Represents a season."""
 
-    
+    id_Season: int   | None = None
     title: str
     description: str
     release_date: date 
-    id_Season: int
-    fk_TV_Showid_TV_Show : int # fk_TV_Showid_TV_Show # int
+    fk_TV_Showid_TV_Show : int    # fk_TV_Showid_TV_Show # int
     
     
-    # TODO
-    # @field_validator("title", "description")
-    # @classmethod
-    # def validate_non_empty_string_seasons(cls, value):
-    #     if not value or not value.strip():
-    #       raise ValueError("This field cannot be empty or contain only whitespace.")
-    #     return value
+    
+    @field_validator("title", "description")
+    @classmethod
+    def validate_non_empty_string_seasons(cls, value):
+        if not value or not value.strip():
+          raise ValueError("This field cannot be empty or contain only whitespace.")
+        return value
     
 
 # class for a single language 
@@ -54,13 +53,13 @@ class Episode(BaseModel):
     """Represents an episode."""
 
     
+    id_Episode: int | None = None
     title: str
     description: str
     episode_number : int
     duration : float
-    id_Episode: int
-    fk_Languageid_Language : int #int # fk_Languageid_Language
-    fk_Seasonid_Season : int #int
+    fk_Languageid_Language : int   #int # fk_Languageid_Language
+    fk_Seasonid_Season : int    #int
 
 
     @field_validator("title", "description")

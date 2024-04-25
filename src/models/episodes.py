@@ -51,11 +51,10 @@ class Episodes:
               description,
               episode_number,
               duration,
-              id_Episode,
               fk_Languageid_Language,
               fk_Seasonid_Season
           )
-          VALUES (?, ?, ?, ?, ?, ?, ?)
+          VALUES (?, ?, ?, ?, ?, ?)
           """
         values = tuple(record.model_dump().values())[1:]  # forget about ID
 
@@ -68,12 +67,12 @@ class Episodes:
     def update(self, record: Episode) -> bool:
         
         query = """
-          UPDATE songs SET
+          UPDATE episodes SET
+              id_Episode = ?,
               title = ?,
               description = ?,
               episode_number = ?,
               duration = ?,
-              id_Episode = ?,
               fk_Languageid_Language = ?
               fk_Seasonid_Season = ?
           WHERE id_Season = ?

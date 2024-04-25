@@ -30,27 +30,26 @@
     </div>
     <div class="form-group">
         <label for="episode_number">Episode Number<span class="text-danger">*</span></label>
-        <input type="number" min="1"  name="episode_number" class="form-control" value="{{ episode.episode_number }}">
+        <input type="number" min="1" max = "30" name="episode_number" class="form-control" value="{{ episode.episode_number }}">
     </div>
     <div class="form-group">
         <label for="duration">Duration (in minutes)<span class="text-danger">*</span></label>
-        <input type="number" min = "1" max = "180"name="duration" class="form-control" value="{{ episode.duration }}">
+        <input type="number.step" min = "1" max = "180" name="duration" class="form-control" value="{{ episode.duration }}">
     </div>
+
     {% if action == "edit" %}
     <div class="form-group">
         <label for="id_Episode">Episode ID</label>
         <input type="number" name="id_Episode" class="form-control" value="{{ episode.id_Episode }}" readonly>
     </div>
-    <div class="form-group">
+    
+    {% endif %}
+    <!-- <div class="form-group">
         <label for="fk_Languageid_Language">Language ID</label>
         <input type="number" name="fk_Languageid_Language" class="form-control" value="{{ episode.fk_Languageid_Language }}" readonly>
-    </div>
-    <div class="form-group">
-        <label for="fk_Seasonid_Season">Season ID</label>
-        <input type="number" name="fk_Seasonid_Season" class="form-control" value="{{ episode.fk_Seasonid_Season }}" readonly>
-    </div>
-    {% endif %}
-    <!--     <div class="form-group">
+    </div> -->
+    
+<!--     <div class="form-group">  
         <label for="event_id">Event<span class="text-danger">*</span></label>
         <select name="event_id" class="form-select form-control">
             {% for event in events %}
@@ -59,7 +58,18 @@
             {% endfor %}
         </select>
     </div> -->
-
+    
+    
+    <div class="form-group">
+        <label for="fk_Languageid_Language">Language<span class="text-danger">*</span></label>
+        <select name="fk_Languageid_Language" class="form-select form-control">
+            {% for language in languages %}
+            <option value="{{ language.id_Language }}" {% if episode.fk_Languageid_Language == language.id_Language %} selected {% endif %}>{{
+                language.language_name }}</option>
+            {% endfor %}
+        </select>
+    </div> 
+    
 
     <h4 class="mt-3">Season Information</h4>
 
@@ -82,23 +92,23 @@
         <label for="id_Season">Season ID</label>
         <input type="number" name="id_Season" class="form-control" value="{{ season.id_Season }}" readonly>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="fk_TV_Showid_TV_Show">TV Show ID</label>
-        <input type="number" name="fk_TV_Showid_TV_Show" class="form-control" value="{{ season.fk_TV_Showid_TV_Show }}" readonly>
-    </div>
+        <input type="number" name="fk_TV_Showid_TV_Show" class="form-control" value="{{ tv_show.id_TV_Show }}" readonly>
+    </div> -->
     {% endif %}
     
     
 
-    <!--     <div class="form-group">
-        <label for="country_id">Country<span class="text-danger">*</span></label>
-        <select name="country_id" class="form-select form-control">
-            {% for country in countries %}
-            <option value="{{ country.country_id }}" {% if performer.country_id==country.country_id %} selected {% endif
-                %}>{{ country.name }}</option>
+    <div class="form-group">
+        <label for="fk_TV_Showid_TV_Show">TV Show<span class="text-danger">*</span></label>
+        <select name="fk_TV_Showid_TV_Show" class="form-select form-control">
+            {% for tv_show in tv_shows %}
+            <option value="{{ tv_show.id_TV_Show }}" {% if season.fk_TV_Showid_TV_Show==tv_show.id_TV_Show %} selected {% endif
+                %}>{{ tv_show.title }}</option>
             {% endfor %}
         </select>
-    </div> -->
+    </div> 
 
 
     <input type="submit" class="btn btn-primary w-25" name="button" value="Submit">
